@@ -1,0 +1,1206 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Peaceful Spaces - Practical Care for Peaceful Living</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Georgia', serif;
+            line-height: 1.7;
+            color: #4a5c4a;
+            background: 
+                radial-gradient(ellipse at 10% 0%, rgba(101, 123, 101, 0.15) 0%, transparent 50%),
+                radial-gradient(ellipse at 90% 100%, rgba(139, 165, 139, 0.12) 0%, transparent 50%),
+                radial-gradient(circle at 70% 30%, rgba(184, 208, 199, 0.1) 0%, transparent 40%),
+                linear-gradient(135deg, #e8f2e8 0%, #d4e4d4 30%, #c8dcc8 70%, #b8d0c7 100%);
+            min-height: 100vh;
+            position: relative;
+        }
+
+        body::before {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 800"><defs><filter id="earth-texture"><feTurbulence type="fractalNoise" baseFrequency="0.01" numOctaves="4"/><feColorMatrix values="0 0 0 0 0.3 0 0 0 0 0.4 0 0 0 0 0.3 0 0 0 0.02 0"/></filter></defs><rect width="100%" height="100%" fill="url(%23earth-texture)"/><ellipse cx="200" cy="700" rx="150" ry="80" fill="rgba(101,123,101,0.08)"/><ellipse cx="800" cy="600" rx="200" ry="100" fill="rgba(139,165,139,0.06)"/><ellipse cx="1000" cy="200" rx="120" ry="60" fill="rgba(184,208,199,0.05)"/></svg>');
+            pointer-events: none;
+            z-index: 0;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+            position: relative;
+            z-index: 1;
+        }
+
+        /* Navigation */
+        nav {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(15px);
+            padding: 1.5rem 0;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            border-bottom: 1px solid rgba(122, 155, 142, 0.1);
+        }
+
+        .nav-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 1.3rem;
+            font-weight: bold;
+            color: #7a9b8e;
+            text-decoration: none;
+            letter-spacing: -0.02em;
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+            gap: 3rem;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: #4a5c4a;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            position: relative;
+        }
+
+        .nav-links a:hover {
+            color: #7a9b8e;
+        }
+
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            bottom: -5px;
+            left: 0;
+            background: #7a9b8e;
+            transition: width 0.3s ease;
+        }
+
+        .nav-links a:hover::after {
+            width: 100%;
+        }
+
+        /* Hero Section */
+        .hero {
+            padding: 150px 0 120px;
+            text-align: center;
+            background: 
+                radial-gradient(ellipse at 50% 100%, rgba(122, 155, 142, 0.15) 0%, transparent 70%),
+                linear-gradient(180deg, rgba(232, 242, 232, 0.1) 0%, rgba(184, 208, 199, 0.05) 100%);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 800"><defs><filter id="mountain-texture"><feTurbulence type="fractalNoise" baseFrequency="0.008" numOctaves="5"/><feColorMatrix values="0 0 0 0 0.48 0 0 0 0 0.56 0 0 0 0 0.48 0 0 0 0.08 0"/></filter><filter id="mist"><feGaussianBlur stdDeviation="4"/></filter></defs><path d="M0,600 Q100,500 200,520 T400,480 Q500,460 600,480 T800,500 Q900,520 1000,500 T1200,520 L1200,800 L0,800 Z" fill="url(%23mountain-texture)"/><path d="M0,650 Q150,580 300,600 T600,580 Q750,570 900,580 T1200,590 L1200,800 L0,800 Z" fill="rgba(122,155,142,0.1)" filter="url(%23mist)"/><circle cx="150" cy="200" r="4" fill="rgba(122,155,142,0.3)"/><circle cx="400" cy="150" r="3" fill="rgba(159,181,170,0.4)"/><circle cx="800" cy="180" r="5" fill="rgba(184,208,199,0.2)"/><circle cx="1000" cy="220" r="3" fill="rgba(122,155,142,0.3)"/></svg>');
+            opacity: 0.7;
+        }
+
+        .hero::after {
+            content: '';
+            position: absolute;
+            bottom: -2px;
+            left: 0;
+            right: 0;
+            height: 100px;
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 100"><defs><filter id="wave-texture"><feTurbulence type="turbulence" baseFrequency="0.02" numOctaves="2"/><feColorMatrix values="1 0 0 0 1 0 1 0 0 1 0 0 1 0 1 0 0 0 0.4 0"/></filter></defs><path d="M0,60 Q200,20 400,40 T800,35 Q1000,30 1200,40 L1200,100 L0,100 Z" fill="url(%23wave-texture)"/><path d="M0,80 Q300,50 600,70 T1200,65 L1200,100 L0,100 Z" fill="rgba(255,255,255,0.3)"/></svg>');
+        }
+
+        .hero-content {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .hero h1 {
+            font-size: 4rem;
+            margin-bottom: 1.5rem;
+            color: #4a5c4a;
+            font-weight: 300;
+            letter-spacing: -0.03em;
+            line-height: 1.2;
+        }
+
+        .hero .tagline {
+            font-size: 1.5rem;
+            color: #7a9b8e;
+            margin-bottom: 2.5rem;
+            font-style: italic;
+            font-weight: 300;
+        }
+
+        .hero .description {
+            font-size: 1.3rem;
+            line-height: 1.7;
+            margin-bottom: 3.5rem;
+            opacity: 0.9;
+            max-width: 700px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .cta-button {
+            display: inline-block;
+            background: #7a9b8e;
+            color: white;
+            padding: 18px 45px;
+            text-decoration: none;
+            border-radius: 8px;
+            font-weight: 500;
+            font-size: 1.1rem;
+            transition: all 0.3s ease;
+            letter-spacing: 0.5px;
+        }
+
+        .cta-button:hover {
+            background: #6a8b7e;
+            transform: translateY(-2px);
+            box-shadow: 0 10px 25px rgba(122, 155, 142, 0.3);
+        }
+
+        /* Sections */
+        .section {
+            padding: 100px 0;
+        }
+
+        .section-title {
+            text-align: center;
+            font-size: 2.8rem;
+            margin-bottom: 4rem;
+            color: #4a5c4a;
+            font-weight: 300;
+            letter-spacing: -0.02em;
+        }
+
+        /* About Section */
+        .about {
+            background: 
+                radial-gradient(ellipse at center, rgba(255, 255, 255, 0.8) 0%, rgba(255, 255, 255, 0.4) 100%),
+                url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 400"><defs><filter id="texture"><feTurbulence type="fractalNoise" baseFrequency="0.04" numOctaves="3"/><feColorMatrix values="0 0 0 0 0.48 0 0 0 0 0.56 0 0 0 0 0.48 0 0 0 0.05 0"/></filter></defs><rect width="100%" height="100%" fill="url(%23texture)"/></svg>');
+            position: relative;
+        }
+
+        .about::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 80px;
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 80"><path d="M0,80 Q300,40 600,80 T1200,80 L1200,0 L0,0 Z" fill="%23ffffff" opacity="0.3"/></svg>');
+        }
+
+        .about-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 6rem;
+            align-items: center;
+        }
+
+        .about-text {
+            font-size: 1.2rem;
+            line-height: 1.8;
+        }
+
+        .about-text p {
+            margin-bottom: 2rem;
+        }
+
+        .about-text p:last-of-type {
+            margin-bottom: 0;
+        }
+
+        .about-text .quote {
+            font-size: 1.4rem;
+            font-style: italic;
+            color: #7a9b8e;
+            margin: 3rem 0;
+            padding-left: 2rem;
+            border-left: 3px solid #7a9b8e;
+        }
+
+        .about-highlights {
+            background: 
+                linear-gradient(135deg, #7a9b8e 0%, #9fb5aa 100%),
+                url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 400"><defs><filter id="crystal"><feTurbulence type="fractalNoise" baseFrequency="0.1" numOctaves="4"/><feColorMatrix values="1 0 0 0 0 0 1 0 0 0 0 0 1 0 0 0 0 0 0.1 0"/></filter></defs><rect width="100%" height="100%" fill="url(%23crystal)"/></svg>');
+            color: white;
+            padding: 3rem;
+            border-radius: 20px;
+            position: relative;
+            overflow: hidden;
+            clip-path: polygon(0 0, 100% 0, 95% 100%, 5% 100%);
+        }
+
+        .about-highlights::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            right: -50%;
+            width: 200%;
+            height: 200%;
+            background: 
+                radial-gradient(circle at 30% 30%, rgba(255, 255, 255, 0.2) 0%, transparent 50%),
+                radial-gradient(circle at 70% 70%, rgba(255, 255, 255, 0.1) 0%, transparent 50%);
+            animation: float 20s ease-in-out infinite;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translate(0, 0) rotate(0deg); }
+            33% { transform: translate(-10px, -10px) rotate(120deg); }
+            66% { transform: translate(10px, -5px) rotate(240deg); }
+        }
+
+        .highlight-item {
+            margin-bottom: 2rem;
+            font-size: 1.1rem;
+            position: relative;
+            z-index: 1;
+        }
+
+        .highlight-item:last-child {
+            margin-bottom: 0;
+        }
+
+        /* Services Section */
+        .services {
+            background: 
+                radial-gradient(ellipse at 20% 0%, rgba(122, 155, 142, 0.05) 0%, transparent 70%),
+                radial-gradient(ellipse at 80% 100%, rgba(159, 181, 170, 0.08) 0%, transparent 70%),
+                linear-gradient(135deg, rgba(255, 255, 255, 0.8) 0%, rgba(232, 242, 232, 0.6) 100%);
+            position: relative;
+        }
+
+        .services::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 120px;
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 120"><path d="M0,0 Q200,60 400,30 T800,40 Q1000,50 1200,30 L1200,120 L0,120 Z" fill="%23ffffff" opacity="0.4"/></svg>');
+        }
+
+        .services-intro {
+            text-align: center;
+            max-width: 700px;
+            margin: 0 auto 5rem;
+            font-size: 1.2rem;
+            color: #6a7c6a;
+            line-height: 1.7;
+        }
+
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 3rem;
+        }
+
+        .service-category {
+            background: 
+                radial-gradient(ellipse at top left, rgba(255, 255, 255, 0.95) 0%, rgba(255, 255, 255, 0.85) 100%),
+                url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 300 300"><defs><filter id="stone-texture"><feTurbulence type="fractalNoise" baseFrequency="0.08" numOctaves="3" seed="5"/><feColorMatrix values="0 0 0 0 0.48 0 0 0 0 0.56 0 0 0 0 0.48 0 0 0 0.04 0"/></filter><filter id="moss"><feTurbulence type="turbulence" baseFrequency="0.3" numOctaves="1"/><feColorMatrix values="0 0 0 0 0.4 0 0 0 0 0.5 0 0 0 0 0.4 0 0 0 0.02 0"/></filter></defs><ellipse cx="50" cy="250" rx="40" ry="25" fill="url(%23stone-texture)"/><ellipse cx="200" cy="280" rx="60" ry="15" fill="url(%23stone-texture)"/><circle cx="80" cy="180" r="8" fill="url(%23moss)"/><circle cx="220" cy="190" r="6" fill="url(%23moss)"/></svg>');
+            padding: 3rem;
+            border-radius: 30px;
+            transition: all 0.4s ease;
+            border: 1px solid rgba(122, 155, 142, 0.15);
+            position: relative;
+            overflow: hidden;
+            backdrop-filter: blur(10px);
+            box-shadow: 
+                0 10px 30px rgba(122, 155, 142, 0.1),
+                inset 0 1px 5px rgba(255, 255, 255, 0.3);
+        }
+
+        .service-category::before {
+            content: '';
+            position: absolute;
+            top: -3px;
+            left: -3px;
+            right: -3px;
+            height: 8px;
+            background: 
+                linear-gradient(90deg, #7a9b8e 0%, #9fb5aa 30%, #b8d0c7 70%, #7a9b8e 100%);
+            border-radius: 30px 30px 0 0;
+            transform: scaleX(0);
+            transform-origin: left;
+            transition: transform 0.4s ease;
+        }
+
+        .service-category::after {
+            content: '';
+            position: absolute;
+            bottom: 15px;
+            right: 15px;
+            width: 50px;
+            height: 50px;
+            background: 
+                radial-gradient(circle, rgba(122, 155, 142, 0.15) 0%, rgba(184, 208, 199, 0.08) 50%, transparent 70%);
+            border-radius: 50%;
+            opacity: 0;
+            transition: opacity 0.4s ease;
+        }
+
+        .service-category:hover::after {
+            opacity: 1;
+        }
+
+        .service-category:hover::before {
+            transform: scaleX(1);
+        }
+
+        .service-category:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 35px rgba(122, 155, 142, 0.15);
+        }
+
+        .service-category h3 {
+            color: #4a5c4a;
+            margin-bottom: 1.5rem;
+            font-size: 1.6rem;
+            font-weight: 500;
+        }
+
+        .service-list {
+            list-style: none;
+        }
+
+        .service-list li {
+            padding: 1rem 0;
+            border-bottom: 1px solid rgba(122, 155, 142, 0.15);
+            font-size: 1.1rem;
+            position: relative;
+            padding-left: 2rem;
+            line-height: 1.5;
+        }
+
+        .service-list li::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 8px;
+            height: 8px;
+            background: #7a9b8e;
+            border-radius: 50%;
+        }
+
+        .service-list li:last-child {
+            border-bottom: none;
+        }
+
+        /* How It Works */
+        .how-it-works {
+            background: 
+                radial-gradient(ellipse at center, rgba(255, 255, 255, 0.9) 0%, rgba(255, 255, 255, 0.7) 100%),
+                url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 400"><defs><filter id="stone"><feTurbulence type="fractalNoise" baseFrequency="0.02" numOctaves="3"/><feColorMatrix values="0 0 0 0 0.45 0 0 0 0 0.52 0 0 0 0 0.45 0 0 0 0.04 0"/></filter></defs><ellipse cx="200" cy="350" rx="80" ry="30" fill="url(%23stone)"/><ellipse cx="600" cy="320" rx="60" ry="25" fill="url(%23stone)"/><ellipse cx="400" cy="360" rx="70" ry="20" fill="url(%23stone)"/></svg>');
+            position: relative;
+        }
+
+        .steps-container {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 3rem;
+            margin-top: 4rem;
+        }
+
+        .step {
+            text-align: center;
+            padding: 2rem;
+            position: relative;
+        }
+
+        .step::before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 100%;
+            transform: translateY(-50%);
+            width: 50px;
+            height: 3px;
+            background: 
+                linear-gradient(90deg, #7a9b8e 0%, rgba(122, 155, 142, 0.3) 70%, transparent 100%),
+                url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 50 3"><path d="M0,1.5 Q12,0.5 25,1.5 T50,1.5" fill="none" stroke="%237a9b8e" stroke-width="1"/></svg>');
+            z-index: 1;
+        }
+
+        .step:last-child::before {
+            display: none;
+        }
+
+        .step-number {
+            display: inline-block;
+            width: 70px;
+            height: 70px;
+            background: 
+                radial-gradient(circle at 25% 25%, #b8d0c7 0%, #9fb5aa 40%, #7a9b8e 100%),
+                url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 70 70"><defs><filter id="mineral-geode"><feTurbulence type="fractalNoise" baseFrequency="0.4" numOctaves="3" seed="3"/><feColorMatrix values="1 0 0 0 0 0 1 0 0 0 0 0 1 0 0 0 0 0 0.2 0"/></filter><filter id="crystal-shine"><feGaussianBlur stdDeviation="1"/><feColorMatrix values="1 0 0 0 1 0 1 0 0 1 0 0 1 0 1 0 0 0 0.4 0"/></filter></defs><circle cx="35" cy="35" r="32" fill="url(%23mineral-geode)"/><circle cx="25" cy="25" r="3" fill="rgba(255,255,255,0.8)" filter="url(%23crystal-shine)"/><circle cx="45" cy="30" r="2" fill="rgba(255,255,255,0.6)"/><circle cx="40" cy="50" r="1.5" fill="rgba(255,255,255,0.7)"/></svg>');
+            color: white;
+            border-radius: 50%;
+            font-size: 1.5rem;
+            font-weight: bold;
+            line-height: 70px;
+            margin-bottom: 1.5rem;
+            position: relative;
+            z-index: 2;
+            box-shadow: 
+                0 8px 25px rgba(122, 155, 142, 0.4),
+                inset 0 3px 8px rgba(255, 255, 255, 0.3),
+                inset 0 -2px 5px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s ease;
+        }
+
+        .step-number:hover {
+            transform: scale(1.05);
+            box-shadow: 
+                0 12px 35px rgba(122, 155, 142, 0.5),
+                inset 0 4px 10px rgba(255, 255, 255, 0.4);
+        }
+
+        .step h3 {
+            color: #4a5c4a;
+            margin-bottom: 1rem;
+            font-size: 1.4rem;
+        }
+
+        .step p {
+            font-size: 1.1rem;
+            line-height: 1.7;
+            color: #6a7c6a;
+        }
+
+        /* Locations & Pricing Combined */
+        .locations-pricing {
+            background: 
+                radial-gradient(ellipse at 30% 20%, rgba(122, 155, 142, 0.08) 0%, transparent 70%),
+                radial-gradient(ellipse at 70% 80%, rgba(159, 181, 170, 0.06) 0%, transparent 70%),
+                linear-gradient(135deg, rgba(255, 255, 255, 0.9) 0%, rgba(232, 242, 232, 0.7) 100%);
+            position: relative;
+        }
+
+        .locations-pricing::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 100px;
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 100"><path d="M0,100 Q150,40 300,60 T600,50 Q800,45 1000,55 T1200,60 L1200,0 L0,0 Z" fill="%23ffffff" opacity="0.5"/></svg>');
+        }
+
+        .two-column {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 6rem;
+            align-items: start;
+        }
+
+        .locations h3, .pricing h3 {
+            color: #4a5c4a;
+            font-size: 2rem;
+            margin-bottom: 2rem;
+            font-weight: 400;
+        }
+
+        .location-item {
+            margin-bottom: 2rem;
+            padding: 2rem;
+            background: 
+                linear-gradient(135deg, rgba(255, 255, 255, 0.9) 0%, rgba(255, 255, 255, 0.7) 100%),
+                url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 100"><defs><filter id="mineral"><feTurbulence type="fractalNoise" baseFrequency="0.08" numOctaves="2"/><feColorMatrix values="0 0 0 0 0.45 0 0 0 0 0.52 0 0 0 0 0.45 0 0 0 0.02 0"/></filter></defs><rect width="100%" height="100%" fill="url(%23mineral)"/></svg>');
+            border-radius: 15px;
+            border-left: 5px solid #7a9b8e;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+            backdrop-filter: blur(5px);
+        }
+
+        .location-item::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            right: 0;
+            width: 60px;
+            height: 100%;
+            background: 
+                radial-gradient(ellipse at center, rgba(122, 155, 142, 0.08) 0%, transparent 70%);
+        }
+
+        .location-item::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 10%;
+            right: 10%;
+            height: 3px;
+            background: 
+                radial-gradient(ellipse, rgba(122, 155, 142, 0.2) 0%, transparent 70%);
+            border-radius: 50%;
+        }
+
+        .location-item:hover {
+            transform: translateX(5px);
+            box-shadow: 0 5px 20px rgba(122, 155, 142, 0.15);
+        }
+
+        .location-name {
+            font-weight: 600;
+            color: #4a5c4a;
+            font-size: 1.2rem;
+        }
+
+        .location-dates {
+            color: #7a9b8e;
+            font-style: italic;
+        }
+
+        .pricing-item {
+            margin-bottom: 2rem;
+            padding: 2.5rem;
+            background: 
+                linear-gradient(135deg, rgba(255, 255, 255, 0.95) 0%, rgba(255, 255, 255, 0.85) 100%),
+                url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 300 250"><defs><filter id="agate-bands"><feTurbulence type="fractalNoise" baseFrequency="0.05" numOctaves="4" seed="7"/><feColorMatrix values="0 0 0 0 0.48 0 0 0 0 0.56 0 0 0 0 0.48 0 0 0 0.03 0"/></filter><filter id="crystal-formation"><feTurbulence type="turbulence" baseFrequency="0.2" numOctaves="2"/><feColorMatrix values="0 0 0 0 0.6 0 0 0 0 0.7 0 0 0 0 0.6 0 0 0 0.02 0"/></filter></defs><ellipse cx="50" cy="200" rx="40" ry="30" fill="url(%23agate-bands)"/><ellipse cx="200" cy="220" rx="60" ry="25" fill="url(%23agate-bands)"/><polygon points="80,50 120,30 160,60 140,100 100,90" fill="url(%23crystal-formation)"/><polygon points="200,40 240,50 220,90 180,80" fill="url(%23crystal-formation)"/></svg>');
+            border-radius: 25px;
+            border: 1px solid rgba(122, 155, 142, 0.2);
+            transition: all 0.4s ease;
+            position: relative;
+            overflow: hidden;
+            clip-path: polygon(8% 0%, 100% 0%, 92% 100%, 0% 100%);
+            box-shadow: 
+                0 8px 25px rgba(122, 155, 142, 0.1),
+                inset 0 1px 3px rgba(255, 255, 255, 0.5);
+        }
+
+        .pricing-item:hover {
+            transform: translateY(-8px) scale(1.02);
+            box-shadow: 
+                0 20px 45px rgba(122, 155, 142, 0.2),
+                0 8px 20px rgba(122, 155, 142, 0.1),
+                inset 0 2px 5px rgba(255, 255, 255, 0.6);
+        }
+
+        .pricing-item.featured {
+            border: 3px solid #7a9b8e;
+            background: 
+                linear-gradient(135deg, rgba(122, 155, 142, 0.12) 0%, rgba(255, 255, 255, 0.9) 100%);
+            transform: scale(1.05);
+            clip-path: polygon(0% 0%, 100% 0%, 100% 100%, 0% 100%);
+            box-shadow: 
+                0 15px 40px rgba(122, 155, 142, 0.25),
+                inset 0 2px 8px rgba(255, 255, 255, 0.4);
+        }
+
+        .pricing-item.featured::before {
+            content: 'Most Popular';
+            position: absolute;
+            top: -15px;
+            left: 25px;
+            background: 
+                linear-gradient(135deg, #7a9b8e 0%, #9fb5aa 100%);
+            color: white;
+            padding: 10px 25px;
+            border-radius: 25px;
+            font-size: 0.85rem;
+            font-weight: 600;
+            box-shadow: 
+                0 6px 20px rgba(122, 155, 142, 0.4),
+                inset 0 1px 3px rgba(255, 255, 255, 0.3);
+        }
+
+        .pricing-title {
+            font-weight: 600;
+            color: #4a5c4a;
+            font-size: 1.3rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .pricing-amount {
+            font-size: 1.8rem;
+            color: #7a9b8e;
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+        }
+
+        .pricing-description {
+            color: #6a7c6a;
+            font-size: 1rem;
+        }
+
+        /* Values Section */
+        .values {
+            background: 
+                radial-gradient(ellipse at center, rgba(255, 255, 255, 0.9) 0%, rgba(232, 242, 232, 0.6) 100%),
+                url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 400"><defs><filter id="sediment"><feTurbulence type="fractalNoise" baseFrequency="0.03" numOctaves="2"/><feColorMatrix values="0 0 0 0 0.45 0 0 0 0 0.52 0 0 0 0 0.45 0 0 0 0.03 0"/></filter></defs><path d="M0,300 Q200,280 400,300 T800,310 Q1000,305 1200,310 L1200,400 L0,400 Z" fill="url(%23sediment)"/></svg>');
+            position: relative;
+        }
+
+        .values-grid {
+            display: grid;
+            grid-template-columns: repeat(5, 1fr);
+            gap: 2rem;
+            margin-top: 4rem;
+        }
+
+        .value-item {
+            text-align: center;
+            padding: 2.5rem 1rem;
+            position: relative;
+            transition: transform 0.3s ease;
+        }
+
+        .value-item::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 40px;
+            height: 4px;
+            background: 
+                radial-gradient(ellipse, #7a9b8e 0%, #9fb5aa 50%, #7a9b8e 100%);
+            border-radius: 10px;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        .value-item::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 20px;
+            height: 3px;
+            background: 
+                radial-gradient(ellipse, rgba(122, 155, 142, 0.3) 0%, transparent 70%);
+            border-radius: 50%;
+        }
+
+        .value-item:hover::before {
+            opacity: 1;
+        }
+
+        .value-item:hover {
+            transform: translateY(-5px);
+        }
+
+        .value-title {
+            font-size: 1.2rem;
+            color: #4a5c4a;
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+        }
+
+        .value-subtitle {
+            font-size: 1rem;
+            color: #7a9b8e;
+            font-style: italic;
+        }
+
+        /* Contact Section */
+        .contact {
+            background: 
+                linear-gradient(135deg, #7a9b8e 0%, #9fb5aa 100%),
+                url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 600"><defs><filter id="water"><feTurbulence type="turbulence" baseFrequency="0.02" numOctaves="3"/><feColorMatrix values="1 0 0 0 0 0 1 0 0 0 0 0 1 0 0 0 0 0 0.08 0"/></filter></defs><rect width="100%" height="100%" fill="url(%23water)"/><path d="M0,400 Q300,380 600,400 T1200,400 L1200,600 L0,600 Z" fill="rgba(255,255,255,0.1)"/></svg>');
+            color: white;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .contact::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 120px;
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 120"><path d="M0,120 Q200,60 400,80 T800,70 Q1000,65 1200,75 L1200,0 L0,0 Z" fill="%23ffffff" opacity="0.1"/></svg>');
+        }
+
+        .contact .section-title {
+            color: white;
+        }
+
+        .contact-content {
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .contact-description {
+            font-size: 1.3rem;
+            margin-bottom: 3.5rem;
+            line-height: 1.7;
+        }
+
+        .contact-methods {
+            display: flex;
+            justify-content: center;
+            gap: 3rem;
+            margin-top: 3rem;
+        }
+
+        .contact-method {
+            background: 
+                linear-gradient(135deg, rgba(255, 255, 255, 0.2) 0%, rgba(255, 255, 255, 0.1) 100%),
+                url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 120"><defs><filter id="water-ripple"><feTurbulence type="turbulence" baseFrequency="0.03" numOctaves="2"/><feColorMatrix values="1 0 0 0 0 0 1 0 0 0 0 0 1 0 0 0 0 0 0.1 0"/></filter></defs><ellipse cx="50" cy="80" rx="40" ry="15" fill="url(%23water-ripple)"/><ellipse cx="150" cy="60" rx="35" ry="20" fill="url(%23water-ripple)"/><circle cx="100" cy="40" r="2" fill="rgba(255,255,255,0.6)"/><circle cx="70" cy="70" r="1.5" fill="rgba(255,255,255,0.4)"/></svg>');
+            padding: 3rem;
+            border-radius: 20px;
+            text-decoration: none;
+            color: white;
+            transition: all 0.4s ease;
+            backdrop-filter: blur(15px);
+            border: 2px solid rgba(255, 255, 255, 0.2);
+            position: relative;
+            overflow: hidden;
+            box-shadow: 
+                0 10px 30px rgba(0, 0, 0, 0.2),
+                inset 0 1px 5px rgba(255, 255, 255, 0.3);
+        }
+
+        .contact-method::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent 0%, rgba(255, 255, 255, 0.15) 50%, transparent 100%);
+            transition: left 0.6s ease;
+        }
+
+        .contact-method::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 20%;
+            right: 20%;
+            height: 4px;
+            background: 
+                radial-gradient(ellipse, rgba(255, 255, 255, 0.3) 0%, transparent 70%);
+            border-radius: 50%;
+            opacity: 0;
+            transition: opacity 0.4s ease;
+        }
+
+        .contact-method:hover::before {
+            left: 100%;
+        }
+
+        .contact-method:hover::after {
+            opacity: 1;
+        }
+
+        .contact-method:hover {
+            background: 
+                linear-gradient(135deg, rgba(255, 255, 255, 0.3) 0%, rgba(255, 255, 255, 0.2) 100%);
+            transform: translateY(-5px) scale(1.05);
+            box-shadow: 
+                0 15px 40px rgba(0, 0, 0, 0.3),
+                inset 0 2px 8px rgba(255, 255, 255, 0.4);
+        }
+
+        .contact-method strong {
+            display: block;
+            font-size: 1.2rem;
+            margin-bottom: 0.5rem;
+        }
+
+        /* Footer */
+        footer {
+            background: #4a5c4a;
+            color: rgba(255, 255, 255, 0.8);
+            text-align: center;
+            padding: 3rem 0;
+            font-size: 1rem;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+            }
+
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+
+            .about-grid,
+            .two-column {
+                grid-template-columns: 1fr;
+                gap: 3rem;
+            }
+
+            .services-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .steps-container {
+                grid-template-columns: 1fr;
+                gap: 2rem;
+            }
+
+            .values-grid {
+                grid-template-columns: 1fr;
+                gap: 1.5rem;
+            }
+
+            .contact-methods {
+                flex-direction: column;
+                align-items: center;
+                gap: 1.5rem;
+            }
+        }
+
+        /* Smooth scroll */
+        html {
+            scroll-behavior: smooth;
+        }
+
+        /* Animations */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(40px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .fade-in {
+            animation: fadeInUp 1s ease-out;
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav>
+        <div class="container">
+            <div class="nav-container">
+                <a href="#" class="logo">Peaceful Spaces</a>
+                <ul class="nav-links">
+                    <li><a href="#about">About</a></li>
+                    <li><a href="#services">Services</a></li>
+                    <li><a href="#how-it-works">Process</a></li>
+                    <li><a href="#locations-pricing">Details</a></li>
+                    <li><a href="#contact">Connect</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="container">
+            <div class="hero-content fade-in">
+                <h1>Peaceful Spaces</h1>
+                <p class="tagline">Practical care for peaceful living</p>
+                <p class="description">Reclaim peace in your daily life with compassionate, non-judgmental support tailored specifically to you. From organizing and tidying to companionship and digital decluttering, helping overwhelmed individuals find calm in their spaces and routines.</p>
+                <a href="#contact" class="cta-button">Begin Your Journey</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about" class="section about">
+        <div class="container">
+            <h2 class="section-title">About Ash Wylde</h2>
+            <div class="about-grid">
+                <div class="about-text">
+                    <p>After experiencing both extremes, from owning an overwhelming five-bedroom home to living out of my car, I discovered firsthand how powerfully our environment shapes our well-being.</p>
+                    
+                    <p>As a single mother raising a teenage daughter, I deeply understand the necessity of creating practical, supportive spaces that nurture emotional well-being and ease daily routines.</p>
+                    
+                    <div class="quote">
+                        "Leave every place, person, and our planet better than I found them."
+                    </div>
+                    
+                    <p>I don't believe in imposing perfection or selling you products. Instead, I offer practical, thoughtful solutions that honor your existing life and space.</p>
+                </div>
+                <div class="about-highlights">
+                    <div class="highlight-item">
+                        <strong>Minimalist Steward & Intentional Nomad</strong><br>
+                        Founder of Peaceful Spaces
+                    </div>
+                    <div class="highlight-item">
+                        <strong>Currently Studying Bees</strong><br>
+                        Aspiring beekeeper supporting earth conservation
+                    </div>
+                    <div class="highlight-item">
+                        <strong>Nature Restoration</strong><br>
+                        Conservation practices and mindful living between sessions
+                    </div>
+                    <div class="highlight-item">
+                        <strong>Mobile Lifestyle Goal</strong><br>
+                        Working toward van life to serve clients across the West Coast
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Services Section -->
+    <section id="services" class="section services">
+        <div class="container">
+            <h2 class="section-title">Services</h2>
+            <div class="services-intro">
+                <p>Mobile home and life-support service designed to help overwhelmed individuals reclaim peace in their daily lives through practical, accessible, and non-judgmental support.</p>
+            </div>
+            <div class="services-grid">
+                <div class="service-category">
+                    <h3>Home + Space Support</h3>
+                    <ul class="service-list">
+                        <li>Tidying, light cleaning, laundry, dishes</li>
+                        <li>Organizing closets, drawers, and workspaces</li>
+                        <li>Move-in/move-out resets</li>
+                        <li>Digital decluttering (photos, files, subscriptions)</li>
+                        <li>Packing/unpacking for moves or trips</li>
+                    </ul>
+                </div>
+
+                <div class="service-category">
+                    <h3>Care + Companionship</h3>
+                    <ul class="service-list">
+                        <li>Pet care, plant care, house-sitting</li>
+                        <li>Child or elder companionship</li>
+                        <li>End-of-life, postpartum, or grief support</li>
+                        <li>Dog walking and pet companionship</li>
+                    </ul>
+                </div>
+
+                <div class="service-category">
+                    <h3>Errands + Nourishment</h3>
+                    <ul class="service-list">
+                        <li>Grocery pick-up or delivery coordination</li>
+                        <li>Light meal prep and fridge refresh</li>
+                        <li>Restocking essentials for returning travelers</li>
+                        <li>Basic plant care or garden tidying</li>
+                    </ul>
+                </div>
+
+                <div class="service-category">
+                    <h3>Admin + Digital Support</h3>
+                    <ul class="service-list">
+                        <li>Inbox triage, appointment scheduling</li>
+                        <li>Light tech help (file organization, password management)</li>
+                        <li>Creating systems for recurring tasks</li>
+                        <li>Gentle accountability for personal goals</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- How It Works -->
+    <section id="how-it-works" class="section how-it-works">
+        <div class="container">
+            <h2 class="section-title">How It Works</h2>
+            <div class="steps-container">
+                <div class="step">
+                    <div class="step-number">1</div>
+                    <h3>Alignment Call</h3>
+                    <p>A free 20-minute, pressure-free conversation to explore your needs and see if we're a good fit.</p>
+                </div>
+                <div class="step">
+                    <div class="step-number">2</div>
+                    <h3>Design Together</h3>
+                    <p>We'll collaborate to create sessions that match your energy, priorities, and budget using sliding scale pricing.</p>
+                </div>
+                <div class="step">
+                    <div class="step-number">3</div>
+                    <h3>Create Peace</h3>
+                    <p>Sessions typically range from 2 to 6 hours, allowing for meaningful progress without overwhelm.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Locations & Pricing -->
+    <section id="locations-pricing" class="section locations-pricing">
+        <div class="container">
+            <div class="two-column">
+                <div class="locations">
+                    <h3>Service Locations</h3>
+                    <div class="location-item">
+                        <div class="location-name">Portland, Oregon</div>
+                        <div class="location-dates">July to September</div>
+                    </div>
+                    <div class="location-item">
+                        <div class="location-name">Queen Creek, Arizona</div>
+                        <div class="location-dates">October to December</div>
+                    </div>
+                    <div class="location-item">
+                        <div class="location-name">San Diego, California</div>
+                        <div class="location-dates">Dates TBD</div>
+                    </div>
+                    <div class="location-item">
+                        <div class="location-name">Virtual Sessions</div>
+                        <div class="location-dates">Available Year-Round</div>
+                    </div>
+                    <p style="margin-top: 1.5rem; font-style: italic; color: #6a7c6a;">
+                        Travel schedule is flexible, please reach out if your timing falls outside these dates or locations.
+                    </p>
+                </div>
+
+                <div class="pricing">
+                    <h3>Investment</h3>
+                    <p style="margin-bottom: 2rem; color: #6a7c6a;">Sliding scale pricing ensures everyone can access support. Choose what aligns with your means.</p>
+                    
+                    <div class="pricing-item">
+                        <div class="pricing-title">Virtual Restore</div>
+                        <div class="pricing-amount">$33–55/hour</div>
+                        <div class="pricing-description">Perfect for maintenance</div>
+                    </div>
+
+                    <div class="pricing-item featured">
+                        <div class="pricing-title">Gentle Reset</div>
+                        <div class="pricing-amount">$88–154</div>
+                        <div class="pricing-description">2 hours • Most popular for first-time clients</div>
+                    </div>
+
+                    <div class="pricing-item">
+                        <div class="pricing-title">Deep Flow</div>
+                        <div class="pricing-amount">$176–308</div>
+                        <div class="pricing-description">4 hours • Great for major transitions</div>
+                    </div>
+
+                    <div class="pricing-item">
+                        <div class="pricing-title">In-Person Sessions</div>
+                        <div class="pricing-amount">$44–77/hour</div>
+                        <div class="pricing-description">1 to 6 hour sessions</div>
+                    </div>
+
+                    <p style="margin-top: 1.5rem; font-weight: 600;">Book 2+ sessions while I'm in town: Save 10%</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Values -->
+    <section class="section values">
+        <div class="container">
+            <h2 class="section-title">Our Values</h2>
+            <div class="values-grid">
+                <div class="value-item">
+                    <div class="value-title">Stewardship</div>
+                    <div class="value-subtitle">over accumulation</div>
+                </div>
+                <div class="value-item">
+                    <div class="value-title">Acceptance</div>
+                    <div class="value-subtitle">over judgment</div>
+                </div>
+                <div class="value-item">
+                    <div class="value-title">Calm</div>
+                    <div class="value-subtitle">over chaos</div>
+                </div>
+                <div class="value-item">
+                    <div class="value-title">Connection</div>
+                    <div class="value-subtitle">over transaction</div>
+                </div>
+                <div class="value-item">
+                    <div class="value-title">Sustainability</div>
+                    <div class="value-subtitle">over convenience</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="section contact">
+        <div class="container">
+            <h2 class="section-title">Let's Connect</h2>
+            <div class="contact-content">
+                <p class="contact-description">Ready to reclaim peace and ease in your daily life? I'd love to hear from you. I'll reply promptly with a link to schedule your complimentary 20-minute Alignment Call.</p>
+                
+                <div class="contact-methods">
+                    <a href="mailto:ash@peacefulspaces.com" class="contact-method">
+                        <strong>Email</strong>
+                        ash@peacefulspaces.com
+                    </a>
+                    <a href="#" class="contact-method" id="calendly-link">
+                        <strong>Schedule Free Call</strong>
+                        20-minute Alignment Call
+                    </a>
+                </div>
+
+                <p style="margin-top: 3rem; font-size: 1.2rem; opacity: 0.9;">
+                    Supporting your journey toward peaceful living, one space at a time.
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <p>&copy; 2025 Peaceful Spaces. Leave every place, person, and our planet better than you found them.</p>
+        </div>
+    </div>
+
+    <script>
+        // Smooth scrolling for navigation links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+        // Intersection Observer for animations
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -100px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.animation = 'fadeInUp 1s ease-out forwards';
+                }
+            });
+        }, observerOptions);
+
+        // Observe all sections
+        document.querySelectorAll('.section').forEach(section => {
+            observer.observe(section);
+        });
+    </script>
+</body>
+</html>
